@@ -31,7 +31,7 @@
         </nav>
 
         <div class="trans-back" ref="transition" aria-hidden="true">
-            <img src="./assets/logoName.svg" alt="Logo" />
+            <img src="./assets/logo.svg" alt="Logo" />
             <p>Let me think &#129300;</p>
             <div class="loadbar">
                 <div class="progress"></div>
