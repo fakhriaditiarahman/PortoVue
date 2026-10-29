@@ -10,21 +10,22 @@
           <span class="hov">t</span>
         </h1>
         <p class="desc">
-          Hi, My name is Fakhri Aditia Rahman, and I'm a frontend developer with
-          expertise creating engaging and straightforward user experiences. I'm
-          enthusiastic about building seamless experiences that assist people in
-          achieving their objectives.
+          Hi, My name is Fakhri Aditia Rahman, and I'm a full stack developer
+          focused on mobile and web, with expertise creating engaging and
+          straightforward user experiences. I'm enthusiastic about building
+          seamless experiences that assist people in achieving their objectives.
           <br /><br />
-          As a informatics Enggineering student, I'm constantly learning and improving
+          As an Informatics Engineering student, I'm constantly learning and improving
           my abilities. I've worked on projects ranging from small websites to
           large-scale web applications, and I'm committed to providing
           high-quality work that fulfills both the demands of the user and the
           specifications of the project.
           <br /><br />
-          Please get in touch if you're seeking for a frontend developer that is
-          passionate about designing engaging and intuitive user interfaces, or
-          if you have an intriguing project you'd like to explore. I'm thrilled
-          to collaborate with you and help you realize your vision.
+          Please get in touch if you're seeking a full stack developer for mobile
+          and web that is passionate about designing engaging and intuitive user
+          interfaces backed by solid APIs and databases, or if you have an
+          intriguing project you'd like to explore. I'm thrilled to collaborate
+          with you and help you realize your vision.
         </p>
       </div>
       <div class="tagcloud"></div>

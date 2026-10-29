@@ -24,6 +24,8 @@
 
 .home .desc {
     font-size: 24px !important;
+    max-width: 420px;
+    line-height: 1.3;
 }
 
 .fa-slash {
@@ -184,5 +186,11 @@ span.hov:hover {
 @media only screen and (max-width: 650px) {
     .logo-con {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 704px) {
+    .bottom-text {
+        font-size: 28px;
     }
 }

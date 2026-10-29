@@ -16,18 +16,19 @@
             </h1>
 
             <p>
-                The main area of my expertise is front end development (client
-                side of the web).
+                My main focus is full stack development for mobile and web — from
+                the interface users see to the APIs and databases behind it.
             </p>
 
             <p>
-                Build beautiful and interactive Web Application with HTML, CSS,
-                and Javascript or Vue.js.
+                Build beautiful and interactive web applications with HTML, CSS,
+                JavaScript, or Vue.js, and cross-platform mobile apps with Flutter
+                and React Native.
             </p>
 
             <p>
-                I also have full stack development experience with Node.Js and
-                MongoDB.
+                I also have backend experience with Node.js, Express, Laravel, and
+                SQL/MongoDB.
             </p>
             <p>
                 Visit my

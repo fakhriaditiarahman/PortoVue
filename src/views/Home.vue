@@ -39,9 +39,15 @@
                         </h1>
 
                         <h1 class="bottom-text">
-                            <span class="hov">W</span>
-                            <span class="hov">e</span>
-                            <span class="hov">b</span>
+                            <span class="hov">F</span>
+                            <span class="hov">u</span>
+                            <span class="hov">l</span>
+                            <span class="hov">l</span>
+                            <span class="hov">s</span>
+                            <span class="hov">t</span>
+                            <span class="hov">a</span>
+                            <span class="hov">c</span>
+                            <span class="hov">k</span>
                             <span class="space"></span>
                             <span class="hov">D</span>
                             <span class="hov">e</span>
@@ -61,7 +67,7 @@
                             <span class="hov">.</span>
                         </h1>
                         <div class="desc">
-                            <p>Front End Developer</p>
+                            <p>Mobile &amp; Web Specialist</p>
                         </div>
                     </div>
                 </div>
