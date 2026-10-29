@@ -52,6 +52,12 @@
         <img src="https://github-readme-stats.vercel.app/api?username=fakhriaditiarahman&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true" alt="GitHub stats" style="max-width: 100%; height: auto;">
         <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fakhriaditiarahman&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top Langs" style="max-width: 100%; height: auto;">
         <img src="https://github-readme-streak-stats.herokuapp.com/?user=fakhriaditiarahman&theme=tokyonight&hide_border=true" alt="GitHub Streak" style="max-width: 100%; height: auto;">
+        <img
+          src="https://raw.githubusercontent.com/fakhriaditiarahman/PortoVue/profilescape-output/3d-dark.svg"
+          alt="Profilescape 3D contribution landscape — Fakhri Aditia Rahman"
+          style="max-width: 100%; height: auto;"
+          loading="lazy"
+        >
       </div>
     </div>
   </div>
