@@ -1,0 +1,56 @@
+/* Subset of Font Awesome Free 5 (solid + brands, woff2 only). */
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../assets/fonts/fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/fa-brands-400.woff2") format("woff2");
+}
+
+.fa,
+.fas,
+.fab {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fas {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.fab {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 400;
+}
+
+.fa-less-than:before { content: "\f536"; }
+.fa-slash:before { content: "\f715"; }
+.fa-greater-than:before { content: "\f531"; }
+.fa-react:before { content: "\f41b"; }
+.fa-vuejs:before { content: "\f41f"; }
+.fa-js-square:before { content: "\f3b9"; }
+.fa-sass:before { content: "\f41e"; }
+.fa-css3-alt:before { content: "\f38b"; }
+.fa-html5:before { content: "\f13b"; }
+.fa-node-js:before { content: "\f3d3"; }
+.fa-node:before { content: "\f419"; }
+.fa-database:before { content: "\f1c0"; }
+.fa-times:before { content: "\f00d"; }
+.fa-envelope:before { content: "\f0e0"; }
+.fa-twitter:before { content: "\f099"; }
+.fa-github:before { content: "\f09b"; }
+.fa-linkedin:before { content: "\f08c"; }

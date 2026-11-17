@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <div class="cursor" ref="cursor" v-if="isMixSupport" aria-hidden="true"></div>
+        <div class="cursor" ref="cursor" aria-hidden="true"></div>
+
+        <a class="skip-link" href="#main-content">Skip to content</a>
 
         <div class="welcome" ref="welcome" aria-hidden="true">
             <h1>
@@ -10,7 +12,7 @@
             </h1>
         </div>
 
-        <main class="view">
+        <main id="main-content" class="view" tabindex="-1">
             <div class="symbols" aria-hidden="true">
                 <div class="top">
                     <i class="fas fa-less-than"></i>
@@ -20,11 +22,13 @@
                     <i class="fas fa-greater-than"></i>
                 </div>
             </div>
-            <transition name="fade" mode="out-in" class="route">
-                <keep-alive>
-                    <router-view />
-                </keep-alive>
-            </transition>
+            <router-view v-slot="{ Component }">
+                <transition name="fade" mode="out-in">
+                    <keep-alive>
+                        <component :is="Component" />
+                    </keep-alive>
+                </transition>
+            </router-view>
         </main>
         <nav>
             <navBar />
@@ -45,24 +49,20 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from './stores/app'
 import { useTransition } from './composables/useTransition'
+import { usePageMeta } from './composables/usePageMeta'
 import navBar from './components/nav.vue'
 
 const route = useRoute()
 const store = useAppStore()
 const { menuBackgroundAnim } = useTransition()
 
+usePageMeta()
+
 const cursor = ref<HTMLElement | null>(null)
 const welcome = ref<HTMLElement | null>(null)
 const transition = ref<HTMLElement | null>(null)
-const isMixSupport = ref(true)
 
 onMounted(() => {
-    if (window.getComputedStyle(document.body).mixBlendMode !== undefined) {
-        isMixSupport.value = true
-    } else {
-        isMixSupport.value = false
-    }
-
     store.backgroundTransition = transition.value
 
     const cursorEl = cursor.value

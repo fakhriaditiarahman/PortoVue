@@ -9,6 +9,63 @@ const MAX = {
     message: 5000,
 } as const
 
+const RATE_LIMIT = {
+    windowMs: 10 * 60 * 1000,
+    max: 5,
+} as const
+
+const hits = new Map<string, { count: number; resetAt: number }>()
+
+function clientIp(req: VercelRequest): string {
+    const forwarded = req.headers['x-forwarded-for']
+    if (typeof forwarded === 'string' && forwarded.length) {
+        return forwarded.split(',')[0].trim()
+    }
+    if (Array.isArray(forwarded) && forwarded.length) {
+        return forwarded[0]
+    }
+    return req.socket?.remoteAddress ?? 'unknown'
+}
+
+// Only accept submissions coming from the site itself (same host).
+function isSameOrigin(req: VercelRequest): boolean {
+    const host = req.headers.host
+    if (!host) return true
+
+    const candidates = [req.headers.origin, req.headers.referer]
+    const present = candidates.filter((value): value is string => typeof value === 'string' && value.length > 0)
+
+    if (!present.length) return true
+
+    return present.some((value) => {
+        try {
+            return new URL(value).host === host
+        } catch {
+            return false
+        }
+    })
+}
+
+function isRateLimited(ip: string): boolean {
+    const now = Date.now()
+    const entry = hits.get(ip)
+
+    if (!entry || entry.resetAt <= now) {
+        hits.set(ip, { count: 1, resetAt: now + RATE_LIMIT.windowMs })
+        return false
+    }
+
+    entry.count += 1
+
+    if (hits.size > 1000) {
+        for (const [key, value] of hits) {
+            if (value.resetAt <= now) hits.delete(key)
+        }
+    }
+
+    return entry.count > RATE_LIMIT.max
+}
+
 function asString(value: unknown, max: number): string {
     return typeof value === 'string' ? value.trim().slice(0, max) : ''
 }
@@ -37,6 +94,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
         res.setHeader('Allow', 'POST')
         return res.status(405).json({ ok: false, error: 'method_not_allowed' })
+    }
+
+    if (!isSameOrigin(req)) {
+        return res.status(403).json({ ok: false, error: 'forbidden_origin' })
+    }
+
+    if (isRateLimited(clientIp(req))) {
+        res.setHeader('Retry-After', String(RATE_LIMIT.windowMs / 1000))
+        return res.status(429).json({ ok: false, error: 'rate_limited' })
     }
 
     const body = readBody(req.body)

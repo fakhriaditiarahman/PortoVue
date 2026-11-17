@@ -16,7 +16,8 @@
     font-family: "Poppins", sans-serif;
 }
 
-.text h1 {
+.text h1,
+.text h2 {
     font-size: var(--font-title-section);
 }
 

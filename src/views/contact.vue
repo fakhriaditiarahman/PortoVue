@@ -3,19 +3,21 @@
         <div class="main" ref="main">
             <div class="text">
                 <div class="title">
-                    <h1>
-                        <div class="outline-text">Contact</div>
-                        <span class="hov">C</span>
-                        <span class="hov">o</span>
-                        <span class="hov">n</span>
-                        <span class="hov">t</span>
-                        <span class="hov">a</span>
-                        <span class="hov">c</span>
-                        <span class="hov">t</span>
-                        <span class="space"></span>
-                        <span class="hov">M</span>
-                        <span class="hov">e</span>
-                    </h1>
+                    <component :is="headingTag" aria-label="Contact Me">
+                        <span class="outline-text" aria-hidden="true">Contact</span>
+                        <span class="letters" aria-hidden="true">
+                            <span class="hov">C</span>
+                            <span class="hov">o</span>
+                            <span class="hov">n</span>
+                            <span class="hov">t</span>
+                            <span class="hov">a</span>
+                            <span class="hov">c</span>
+                            <span class="hov">t</span>
+                            <span class="space"></span>
+                            <span class="hov">M</span>
+                            <span class="hov">e</span>
+                        </span>
+                    </component>
                 </div>
                 <form @submit.prevent="send" class="form" aria-label="Contact form">
                     <input type="text" v-model="honey" name="bot-field" class="sr-only" tabindex="-1"
@@ -43,7 +45,7 @@
                             <a class="x media" href="https://x.com/FakhriAR05" target="_blank" aria-label="Follow on X">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a class="github media" href="https://github.com/fakerteamxyz" target="_blank" aria-label="Follow on GitHub">
+                            <a class="github media" href="https://github.com/fakhriaditiarahman" target="_blank" rel="noopener" aria-label="Follow on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
                             <a class="Linkedln media" href="https://www.linkedin.com/in/fakhri-aditia-rahman-36b54229b/"
@@ -84,6 +86,9 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
+
+const props = defineProps<{ embedded?: boolean }>()
+const headingTag = computed(() => (props.embedded ? 'h2' : 'h1'))
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
 

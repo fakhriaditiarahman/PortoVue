@@ -2,7 +2,9 @@
     <div class="navbar">
         <nav>
             <div class="logo">
-                <img src="../assets/logo.svg" alt="" />
+                <router-link to="/" aria-label="Fakhri Aditia Rahman — home">
+                    <img src="../assets/logo.svg" alt="" />
+                </router-link>
             </div>
             <div class="direct" ref="navList">
                 <div class="active-back" ref="menuBag">
@@ -122,13 +124,20 @@
                     </router-link>
                 </div>
             </div>
-            <div class="menu-toogle">
-                <input type="checkbox" @click="slide" ref="checkbox"/>
+            <button
+                type="button"
+                class="menu-toogle"
+                :class="{ 'is-open': menuOpen }"
+                :aria-expanded="menuOpen"
+                aria-controls="mobile-menu"
+                aria-label="Toggle navigation menu"
+                @click="slide"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <div class="mob-ver trans" ref="mobVer">
+            </button>
+            <div id="mobile-menu" class="mob-ver trans" ref="mobVer" :class="{ show: menuOpen }">
                 <ul>
                     <li @click="changePage">
                         <router-link to="/" data-content="Home">
@@ -141,7 +150,7 @@
                         </router-link>
                     </li>
                     <li @click="changePage">
-                        <router-link to="/Skills" data-content="Sklills">
+                        <router-link to="/skills" data-content="Skills">
                         Skills
                         </router-link>
                     </li>
@@ -162,7 +171,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useAppStore } from '../stores/app'
 import { useTransition } from '../composables/useTransition'
 
@@ -173,20 +182,21 @@ const navList = ref<HTMLElement | null>(null)
 const menuBag = ref<HTMLElement | null>(null)
 const size = ref<HTMLElement | null>(null)
 const mobVer = ref<HTMLElement | null>(null)
-const checkbox = ref<HTMLInputElement | null>(null)
+const menuOpen = ref(false)
 
 function slide() {
-    mobVer.value?.classList.toggle('show')
-    mobVer.value?.classList.add('trans')
+    menuOpen.value = !menuOpen.value
 }
 
 function changePage() {
-    mobVer.value?.classList.remove('trans')
     pageTransition()
-    if (checkbox.value) checkbox.value.checked = false
     setTimeout(() => {
-        slide()
+        menuOpen.value = false
     }, 1000)
+}
+
+function onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && menuOpen.value) menuOpen.value = false
 }
 
 onMounted(() => {
@@ -194,6 +204,11 @@ onMounted(() => {
     store.menuListHeight = size.value?.clientHeight ?? 0
     store.lastVisitedPage = size.value?.children[0] as HTMLElement | null
     store.lastVisitedPage?.classList.toggle('active')
+    window.addEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('keydown', onKeydown)
 })
 </script>
 

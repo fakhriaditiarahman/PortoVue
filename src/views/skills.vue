@@ -1,18 +1,19 @@
 <template>
     <div class="skills view-page">
         <div class="text">
-            <h1 class="title">
-                <div class="outline-text">Skills</div>
-                <span class="hov">W</span>
-                <span class="hov">h</span>
-                <span class="hov">a</span>
-
-                <span class="hov">t</span>
-                <span class="space"></span>
-                <span class="hov">I</span>
-                <span class="space"></span>
-                <span class="hov">D</span>
-                <span class="hov">o</span>
+            <h1 class="title" aria-label="What I do">
+                <span class="outline-text" aria-hidden="true">Skills</span>
+                <span class="letters" aria-hidden="true">
+                    <span class="hov">W</span>
+                    <span class="hov">h</span>
+                    <span class="hov">a</span>
+                    <span class="hov">t</span>
+                    <span class="space"></span>
+                    <span class="hov">I</span>
+                    <span class="space"></span>
+                    <span class="hov">D</span>
+                    <span class="hov">o</span>
+                </span>
             </h1>
 
             <p>
@@ -150,11 +151,11 @@
                         <i class="fas fa-database"></i>
                     </span>
                 </div>
-                <div class="mongo stack" @click="
+                <div class="sql stack" @click="
                         showInfo(
-                            'MongoDB',
-                            'mongodb',
-                            'MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program.'
+                            'SQL',
+                            'sql',
+                            'SQL is the standard language for storing, querying, and managing data in relational databases such as MySQL and PostgreSQL.'
                         )
                     ">
                     <p>SQL</p>
@@ -194,7 +195,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useTransition } from '../composables/useTransition'
 
 const { menuBackgroundAnim } = useTransition()
@@ -213,6 +214,8 @@ import htmlIcon from '../assets/html.svg'
 import expressIcon from '../assets/express.svg'
 import nodeIcon from '../assets/node.svg'
 import mongodbIcon from '../assets/mongodb.svg'
+import sqlIcon from '../assets/sql.svg'
+import laravelIcon from '../assets/laravel-svgrepo-com.png'
 
 const iconMap: Record<string, string> = {
   react: reactIcon,
@@ -224,7 +227,8 @@ const iconMap: Record<string, string> = {
   express: expressIcon,
   node: nodeIcon,
   mongodb: mongodbIcon,
-  'laravel-svgrepo-com': ''
+  sql: sqlIcon,
+  'laravel-svgrepo-com': laravelIcon
 }
 
 const iconSrc = computed(() => {
