@@ -40,6 +40,7 @@
 .action-btn {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 .buttons .social {
@@ -251,7 +252,35 @@ form button {
 }
 
 @media only screen and (max-width: 680px) {
-    .social {
-        display: none;
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+    }
+
+    .buttons .social {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 1.25rem;
+    }
+
+    .buttons .social .media {
+        margin: 0;
+    }
+
+    .action-btn {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .action-btn .btn {
+        width: 100%;
+        padding: 12px 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
     }
 }

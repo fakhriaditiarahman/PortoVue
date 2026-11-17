@@ -434,7 +434,7 @@ const projects: Project[] = [
             'Konfirmasi pemesanan otomatis',
             'Riwayat pemesanan pengguna',
         ],
-        timeline: '3 Minggu (Juni 2024)',
+        timeline: '3 Minggu (Juni 2023)',
         workflow: [
             'Analisis kebutuhan & riset sistem booking',
             'Perancangan database & arsitektur sistem',
@@ -494,7 +494,7 @@ const projects: Project[] = [
             'Profil sekolah & kontak',
             'Halaman publik & admin panel CMS',
         ],
-        timeline: '2 Bulan (Januari - Februari 2024)',
+        timeline: '2 Bulan (Januari - Februari 2025)',
         workflow: [
             'Analisis kebutuhan sekolah & wawancara stakeholder',
             'Perancangan database & arsitektur sistem',
@@ -524,7 +524,7 @@ const projects: Project[] = [
             'Kontak & lokasi instansi',
             'CMS untuk kelola konten mandiri',
         ],
-        timeline: '1 Bulan (Maret 2024)',
+        timeline: '1 Bulan (Maret 2026)',
         workflow: [
             'Analisis kebutuhan instansi pemerintah',
             'Design UI profesional & informatif',
@@ -552,7 +552,7 @@ const projects: Project[] = [
             'Informasi tiket & lokasi',
             'Kontak & media sosial',
         ],
-        timeline: '2 Minggu (April 2024)',
+        timeline: '2 Minggu (April 2026)',
         workflow: [
             'Konsep & perancangan tampilan artistik',
             'Development halaman utama & jadwal event',
