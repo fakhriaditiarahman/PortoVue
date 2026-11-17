@@ -1,0 +1,205 @@
+@import url(./global.css);
+
+.portfolio {
+    --p-fg: var(--second-color);
+    --p-muted: #a8a8a8;
+    --p-line: rgba(240, 240, 240, 0.16);
+    --p-line-strong: rgba(240, 240, 240, 0.32);
+    --p-surface: #262626;
+    --p-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --p-gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ---------- header ---------- */
+
+.portfolio-head {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--p-line);
+}
+
+.portfolio-head .title {
+    font-size: var(--font-title-section);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--p-fg);
+}
+
+.portfolio .text .desc {
+    max-width: 46ch;
+    margin: 0.9rem 0 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--p-muted);
+}
+
+/* ---------- action ---------- */
+
+.portfolio .btn {
+    padding: 0.68rem 0.95rem;
+    border-width: 2px;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    align-self: flex-end;
+}
+
+/* ---------- gallery ---------- */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--p-gap);
+    margin-top: 2rem;
+}
+
+.gallery-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--p-line-strong);
+    background: var(--p-surface);
+    color: var(--p-fg);
+    overflow: hidden;
+    isolation: isolate;
+    transition: border-color 220ms var(--p-ease);
+}
+
+.gallery-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 520ms var(--p-ease);
+}
+
+.gallery-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 1;
+    height: 55%;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0));
+    pointer-events: none;
+    transition: opacity 220ms var(--p-ease);
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--p-fg);
+}
+
+.gallery-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gallery-arrow {
+    flex-shrink: 0;
+    transition: transform 240ms var(--p-ease);
+}
+
+.gallery-card:focus-visible {
+    outline: 2px solid var(--p-fg);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .gallery-card:hover {
+        border-color: var(--p-fg);
+    }
+
+    .gallery-card:hover img {
+        transform: scale(1.045);
+    }
+
+    .gallery-card:hover .gallery-arrow {
+        transform: translate(2px, -2px);
+    }
+}
+
+/* ---------- responsive ---------- */
+
+@media only screen and (max-width: 1023px) {
+    .portfolio {
+        margin-top: 4rem;
+    }
+
+    .portfolio-head {
+        align-items: flex-start;
+    }
+
+    .portfolio .outline-text {
+        font-size: clamp(3rem, 13vw, 5rem);
+        top: -3.6rem;
+    }
+
+    .portfolio .btn {
+        align-self: flex-start;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .portfolio {
+        margin-top: 3rem;
+    }
+
+    .portfolio-head {
+        gap: 1.25rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .portfolio-head .title {
+        font-size: 2.1rem;
+    }
+
+    .portfolio .outline-text {
+        display: none;
+    }
+
+    .portfolio .text .desc {
+        margin-top: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .gallery {
+        margin-top: 1.5rem;
+    }
+
+    .gallery-caption {
+        padding: 0.85rem 1rem;
+        font-size: 0.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gallery-card,
+    .gallery-card img,
+    .gallery-card::after,
+    .gallery-arrow {
+        transition-duration: 1ms !important;
+    }
+
+    .gallery-card:hover img {
+        transform: none;
+    }
+}
