@@ -94,6 +94,74 @@
                     </svg>
                 </span>
             </a>
+
+            <a
+                class="gallery-card"
+                href="https://kopiajoe.vercel.app/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open the Kopi Ajoe project in a new tab"
+            >
+                <img
+                    src="/kopiajoe.jpeg"
+                    alt="Kopi Ajoe landing page"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <span class="gallery-caption">
+                    <span class="gallery-name">Kopi Ajoe</span>
+                    <svg
+                        class="gallery-arrow"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M8 16 16 8M9 8h7v7"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+            </a>
+
+            <a
+                class="gallery-card"
+                href="https://monocreative-pi.vercel.app/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open the Mono Creative project in a new tab"
+            >
+                <img
+                    src="/monocreative.jpeg"
+                    alt="Mono Creative landing page"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <span class="gallery-caption">
+                    <span class="gallery-name">Mono Creative</span>
+                    <svg
+                        class="gallery-arrow"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M8 16 16 8M9 8h7v7"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+            </a>
         </div>
     </section>
 </template>

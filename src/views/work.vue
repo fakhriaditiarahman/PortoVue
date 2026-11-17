@@ -377,6 +377,7 @@ import fakertype from '../assets/fakertype.png'
 import sman1 from '../assets/sman1_new.png'
 import sibarakat from '../assets/sibarakat.png'
 import arekLungga from '../assets/arek_lungga.png'
+import monobox from '../assets/monobox.jpeg'
 
 interface Project {
     title: string
@@ -399,6 +400,9 @@ const imageMap: Record<string, string> = {
     'sman1_new.png': sman1,
     'sibarakat.png': sibarakat,
     'arek_lungga.png': arekLungga,
+    'monobox.jpeg': monobox,
+    'kopiajoe.jpeg': '/kopiajoe.jpeg',
+    'monocreative.jpeg': '/monocreative.jpeg',
 }
 
 function getImage(name: string): string {
@@ -561,6 +565,125 @@ const projects: Project[] = [
             'Deployment & publikasi',
         ],
         technologies: ['Bootstrap', 'JavaScript', 'CSS3', 'HTML5'],
+    },
+    {
+        title: 'Monobox Photobooth',
+        description:
+            'Monobox is a photobooth rental platform in Padang for weddings, corporate gatherings, and events. Visitors can browse products, check available packages, see the gallery, find outlet locations, and book a session online.',
+        detailDescription:
+            'Monobox adalah platform penyewaan photobooth di Padang yang melayani kebutuhan pernikahan, gathering kantor, dan berbagai event. Website ini menghadirkan solusi photobooth lengkap mulai dari unit siap pakai, rental photobooth, custom frame untuk brand, hingga program kemitraan dan langganan software yang terintegrasi. Pengunjung dapat menelusuri katalog produk beserta paketnya, melihat galeri hasil foto, menemukan lokasi outlet, dan melakukan booking sesi secara online tanpa harus datang ke lokasi. Dari sisi pengelola, tersedia dashboard admin untuk memantau booking, mengatur katalog dan paket, serta memperbarui konten galeri. Website dibangun menggunakan Laravel dengan Bootstrap untuk tampilan yang responsif, didukung Vite sebagai build tool, dan dilengkapi dukungan dua bahasa (Indonesia & English) agar mudah diakses berbagai kalangan.',
+        source: '',
+        link: 'https://monobox.monoframe.id/',
+        img: 'monobox.jpeg',
+        codeTools: ['Laravel', 'Bootstrap'],
+        design: 'Design by Me',
+        features: [
+            'Booking sesi photobooth online',
+            'Katalog produk, paket & rental',
+            'Custom frame untuk kebutuhan brand',
+            'Galeri hasil foto & dokumentasi',
+            'Informasi lokasi & outlet Padang',
+            'Program kemitraan & langganan software',
+            'Dashboard admin untuk kelola booking',
+            'Dukungan dua bahasa (ID & EN)',
+        ],
+        timeline: '2026',
+        workflow: [
+            'Riset kebutuhan photobooth & target pasar',
+            'Perancangan UI/UX dan struktur halaman',
+            'Setup project Laravel & konfigurasi Bootstrap',
+            'Pengembangan modul booking & jadwal',
+            'Pengembangan katalog, galeri, dan lokasi outlet',
+            'Pembuatan dashboard admin',
+            'Integrasi multi-bahasa, testing & deployment',
+        ],
+        technologies: [
+            'Laravel',
+            'Bootstrap',
+            'Vite',
+            'JavaScript',
+            'MySQL',
+            'HTML5',
+            'CSS3',
+        ],
+    },
+    {
+        title: 'Kopi Ajoe',
+        description:
+            'Kopi Ajoe is a cinematic coffee landing page that tells the story of a Padang-born coffee brand through a scroll-driven cup animation, from bean selection to the last sip.',
+        detailDescription:
+            'Kopi Ajoe adalah landing page kopi sinematik yang mengangkat cerita brand kopi asal Padang, dari pemilihan biji hingga tegukan terakhir. Halaman dibuka dengan animasi scroll sepanjang 900vh: gambar kopi bergerak mengikuti scroll, diselingi teks bertahap seperti "Taste the Tradition" dan "Brewed for Perfection", sebelum masuk ke cerita pendiri, keunggulan produk, jangkauan kota, dan menu racikan Ajoe. Seluruh animasi dikendalikan lewat scroll sehingga pengunjung terasa diajak menonton film pendek, bukan sekadar membaca halaman. Tampilan dibangun dengan Next.js App Router dan Tailwind CSS, memakai canvas full-screen untuk animasi, mix-blend-mode, dan tipografi besar bergaya editorial untuk menghadirkan kesan premium. Situs juga dilengkapi indikator progres loading, navigasi minimalis, kartu menu interaktif, dan daftar kota dengan status "Coming Soon" sebagai penanda ekspansi brand.',
+        source: '',
+        link: 'https://kopiajoe.vercel.app/',
+        img: 'kopiajoe.jpeg',
+        codeTools: ['Next.js', 'Tailwind CSS'],
+        design: 'Design by Me',
+        features: [
+            'Animasi scroll sinematik 900vh',
+            'Hero canvas full-screen',
+            'Progress loading "Brewing Experience"',
+            'Cerita pendiri & nilai brand',
+            'Kartu keunggulan produk interaktif',
+            'Statistik brand & jangkauan kota',
+            'Menu racikan dengan hover reveal',
+            'Navigasi minimalis & responsif',
+        ],
+        timeline: '2 Minggu (November 2026)',
+        workflow: [
+            'Riset brand & referensi landing page sinematik',
+            'Perancangan alur cerita berbasis scroll',
+            'Penyusunan aset gambar & tipografi editorial',
+            'Setup project Next.js & Tailwind CSS',
+            'Pengembangan animasi canvas & scroll timeline',
+            'Penyusunan section cerita, statistik, dan menu',
+            'Responsive testing, optimasi performa & deployment',
+        ],
+        technologies: [
+            'Next.js',
+            'Tailwind CSS',
+            'JavaScript',
+            'HTML5 Canvas',
+            'CSS3',
+        ],
+    },
+    {
+        title: 'Mono Creative',
+        description:
+            'Mono Creative is a cinematic landing page for a property marketing studio, pairing a full-bleed aerial hero with a scroll-driven story that leads into services, showreel, team, portfolio, and contact.',
+        detailDescription:
+            'Mono Creative adalah landing page untuk agensi creative & sales partner yang fokus melayani developer properti. Halaman dibuka dengan hero full-screen berisi footage aerial kawasan hunian dan headline besar "Every great property starts with a story", lalu cerita bergerak mengikuti scroll: pergeseran persepsi dari visual biasa menjadi visual premium, penjelasan value agensi, layanan creative production hingga brand & campaign, showreel film, profil tim, dan portfolio properti dengan filter kategori. Struktur halaman disusun sebagai narasi penjualan, bukan sekadar katalog: setiap section diarahkan untuk membangun persepsi premium dan mendorong inquiry dari developer. Situs dibangun dengan Astro sehingga mayoritas halaman tersaji sebagai HTML statis yang ringan dan cepat, didukung optimasi gambar bawaan Astro (AVIF responsif dengan lazy loading), animasi scroll berbasis Motion, serta layout CSS custom yang responsif. Bagian kontak dilengkapi form dengan validasi nama PIC, perusahaan, email, telepon, dan tipe project, ditambah akses cepat ke WhatsApp dan Instagram.',
+        source: '',
+        link: 'https://monocreative-pi.vercel.app/',
+        img: 'monocreative.jpeg',
+        codeTools: ['Astro', 'Motion'],
+        design: 'Design by Me',
+        features: [
+            'Hero sinematik full-screen aerial property',
+            'Scroll storytelling & animasi reveal',
+            'Penjelasan layanan creative production end-to-end',
+            'Showreel film dengan player',
+            'Profil tim & portfolio dengan filter kategori',
+            'Alur kerja 8 tahap yang transparan',
+            'Form kontak dengan validasi & akses WhatsApp',
+            'Optimasi gambar AVIF & performa Astro',
+        ],
+        timeline: '2 Minggu (November 2026)',
+        workflow: [
+            'Riset brand & kompetitor industri properti',
+            'Perancangan struktur halaman & copywriting',
+            'Penyusunan aset visual & footage aerial',
+            'Setup project Astro & design system',
+            'Development section hero, services, showreel, dan portfolio',
+            'Integrasi animasi scroll & form kontak',
+            'Optimasi gambar, responsive testing & deployment',
+        ],
+        technologies: [
+            'Astro',
+            'JavaScript',
+            'Motion',
+            'HTML5',
+            'CSS3',
+        ],
     },
 ]
 
