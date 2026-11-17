@@ -130,7 +130,7 @@
             </a>
 
             <a
-                class="gallery-card"
+                class="gallery-card is-mono"
                 href="https://monocreative-pi.vercel.app/"
                 target="_blank"
                 rel="noopener"

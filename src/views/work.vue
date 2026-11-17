@@ -16,7 +16,7 @@
                 <span class="hov" aria-hidden="true">s</span>
             </h1>
             <p class="work-intro">
-                {{ projects.length }} builds, from school portals to event sites. Open one
+                {{ projects.length }} builds, from school portals to business platforms. Open one
                 for the stack, the features, and how it was made.
             </p>
         </header>
@@ -54,6 +54,7 @@
                                     <img
                                         :src="getImage(project.img)"
                                         :alt="'Screenshot of ' + project.title"
+                                        :style="project.imgPosition ? { objectPosition: project.imgPosition } : undefined"
                                         loading="lazy"
                                         decoding="async"
                                     />
@@ -131,6 +132,7 @@
                         :key="project.img"
                         :src="getImage(project.img)"
                         :class="{ 'is-active': index === activeIndex }"
+                        :style="project.imgPosition ? { objectPosition: project.imgPosition } : undefined"
                         alt=""
                         decoding="async"
                     />
@@ -220,6 +222,7 @@
                             <img
                                 :src="getImage(active.img)"
                                 :alt="'Screenshot of ' + active.title"
+                                :style="active.imgPosition ? { objectPosition: active.imgPosition } : undefined"
                                 decoding="async"
                             />
                         </figure>
@@ -386,6 +389,7 @@ interface Project {
     source: string
     link: string
     img: string
+    imgPosition?: string
     codeTools: string[]
     design: string
     features: string[]
@@ -402,6 +406,7 @@ const imageMap: Record<string, string> = {
     'arek_lungga.png': arekLungga,
     'monobox.jpeg': monobox,
     'kopiajoe.jpeg': '/kopiajoe.jpeg',
+    'monodev.jpeg': '/monodev.jpeg',
     'monocreative.jpeg': '/monocreative.jpeg',
 }
 
@@ -655,6 +660,7 @@ const projects: Project[] = [
         source: '',
         link: 'https://monocreative-pi.vercel.app/',
         img: 'monocreative.jpeg',
+        imgPosition: '12% center',
         codeTools: ['Astro', 'Motion'],
         design: 'Design by Me',
         features: [
@@ -683,6 +689,47 @@ const projects: Project[] = [
             'Motion',
             'HTML5',
             'CSS3',
+        ],
+    },
+    {
+        title: 'Monodev',
+        description:
+            'Monodev is a digital agency platform for professional websites and business apps, from company profiles and e-commerce to custom web apps, SaaS, and mobile apps — with clear pricing packages, a portfolio, testimonials, and a client portal for projects and invoices.',
+        detailDescription:
+            'Monodev adalah platform agency digital yang menawarkan jasa pembuatan website dan aplikasi bisnis profesional, mulai dari company profile, e-commerce, aplikasi web custom, SaaS platform, hingga aplikasi mobile. Halaman publiknya dibuka dengan hero interaktif berisi lima kategori layanan, lalu dilanjutkan paket harga dengan rincian fitur, portofolio, testimoni klien, FAQ, dan formulir kontak. Pengunjung dapat mendaftar sebagai klien dan masuk ke client dashboard untuk memantau progres proyek beserta milestone dan lampirannya, mengunduh invoice PDF, mengunggah bukti pembayaran, membuka tiket dukungan, serta melihat statistik program referral. Di baliknya tersedia admin panel lengkap untuk mengelola pengguna dan role, inquiry yang bisa dikonversi menjadi proyek, milestone, invoice, portofolio, testimoni, FAQ, tiket, paket harga, promo popup, hingga ekspor data klien. Situs mendukung dua bahasa (Indonesia & English) dan dibangun dengan Laravel, Inertia.js, React, serta Tailwind CSS sehingga navigasinya terasa seperti single-page app.',
+        source: '',
+        link: 'https://monodev.tech/',
+        img: 'monodev.jpeg',
+        codeTools: ['Laravel', 'React'],
+        design: 'Design by Me',
+        features: [
+            'Hero interaktif dengan 5 kategori layanan',
+            'Paket harga dengan rincian fitur transparan',
+            'Portofolio, testimoni klien & FAQ',
+            'Registrasi & login area klien',
+            'Dashboard proyek dengan milestone',
+            'Invoice PDF & unggah bukti pembayaran',
+            'Tiket dukungan & program referral',
+            'Admin panel untuk kelola konten & proyek',
+            'Dukungan dua bahasa (ID & EN)',
+        ],
+        timeline: '2026',
+        workflow: [
+            'Riset kebutuhan layanan agency & target pasar',
+            'Perancangan struktur halaman publik & alur pendaftaran klien',
+            'Setup project Laravel, Inertia.js, React & Tailwind CSS',
+            'Pengembangan landing page, paket harga, portofolio & testimoni',
+            'Pembuatan area klien: proyek, invoice, tiket & referral',
+            'Pembuatan admin panel & manajemen konten',
+            'Integrasi multi-bahasa, testing & deployment',
+        ],
+        technologies: [
+            'Laravel',
+            'Inertia.js',
+            'React',
+            'Tailwind CSS',
+            'MySQL',
+            'Vite',
         ],
     },
 ]

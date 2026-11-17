@@ -57,6 +57,12 @@
     margin-top: 2rem;
 }
 
+@media only screen and (min-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 .gallery-card {
     position: relative;
     display: block;
@@ -75,6 +81,10 @@
     height: 100%;
     object-fit: cover;
     transition: transform 520ms var(--p-ease);
+}
+
+.gallery-card.is-mono img {
+    object-position: 12% center;
 }
 
 .gallery-card::after {
