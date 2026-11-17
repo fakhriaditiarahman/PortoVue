@@ -177,6 +177,23 @@ form button {
     padding: 0.5rem 2rem;
 }
 
+.message-status .fallback {
+    margin-top: 1rem;
+}
+
+.action-btn .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.action-btn .btn:disabled::after {
+    transform: translate(-100%);
+}
+
+.loader:focus {
+    outline: none;
+}
+
 .loader {
     position: fixed;
     left: 0;

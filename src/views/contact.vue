@@ -17,21 +17,24 @@
                         <span class="hov">e</span>
                     </h1>
                 </div>
-                <form @submit="send" class="form" aria-label="Contact form">
-                    <input type="hidden" name="_captcha" value="false" />
+                <form @submit.prevent="send" class="form" aria-label="Contact form">
+                    <input type="text" v-model="honey" name="bot-field" class="sr-only" tabindex="-1"
+                        autocomplete="off" aria-hidden="true" />
                     <div class="input-wrapper">
                         <label for="name" class="sr-only">Name</label>
-                        <input type="text" placeholder="Name" required v-model="name" name="name" id="name" class="input" />
+                        <input type="text" placeholder="Name" required v-model="name" name="name" id="name"
+                            class="input" autocomplete="name" maxlength="80" />
 
                         <label for="email" class="sr-only">Email address</label>
                         <input type="email" placeholder="Email address" name="email" required v-model="email" id="email"
-                            class="input" />
+                            class="input" autocomplete="email" maxlength="120" />
                     </div>
                     <label for="subject" class="sr-only">Subject</label>
-                    <input type="text" placeholder="Subject" required v-model="subject" name="subject" id="subject" class="input" />
+                    <input type="text" placeholder="Subject" required v-model="subject" name="subject" id="subject"
+                        class="input" maxlength="150" />
                     <label for="message" class="sr-only">Message</label>
                     <textarea id="message" cols="30" rows="10" placeholder="Your Message" name="message" required
-                        v-model="message" class="textarea"></textarea>
+                        v-model="message" class="textarea" maxlength="5000"></textarea>
                     <div class="buttons">
                         <div class="social">
                             <a class="email media" href="mailto:fakhriaditiarahman12@gmail.com" target="_blank" aria-label="Email me">
@@ -52,8 +55,9 @@
                             <a class="btn" href="https://drive.google.com/uc?export=download&id=1W6uTeokts_PyimR1rSqe9ChwSpEJiqm5" target="_blank">
                                 Download CV
                             </a>
-                            <button type="submit" class="btn">
-                                Send Message!
+                            <button type="submit" class="btn" :disabled="status === 'sending'"
+                                :aria-busy="status === 'sending'">
+                                {{ status === 'sending' ? 'Sending…' : 'Send Message!' }}
                             </button>
                         </div>
                     </div>
@@ -62,60 +66,105 @@
 
         </div>
 
-        <div class="loader " v-if="isShowingStatus">
-            <div class="lds-ring" v-if="isLoading"></div>
+        <div v-if="overlayOpen" ref="overlayEl" class="loader" role="status" aria-live="polite" tabindex="-1"
+            @keydown.esc="closeOverlay" @click.self="closeOverlay">
+            <div class="lds-ring" v-if="status === 'sending'" aria-label="Sending your message"></div>
             <div v-else class="message-status">
-                <b>{{ sendMessageStatus }}</b>
-                <p>{{ statusMessage }}</p>
-                <button @click="toggleStatusPage" class="btn">OK</button>
+                <b>{{ overlayTitle }}</b>
+                <p>{{ overlayMessage }}</p>
+                <a v-if="status === 'error'" class="btn fallback"
+                    href="mailto:fakhriaditiarahman12@gmail.com?subject=Message%20from%20your%20portfolio">
+                    Email me directly
+                </a>
+                <button ref="okButton" @click="closeOverlay" class="btn">OK</button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import axios from 'axios'
+import { computed, nextTick, ref, watch } from 'vue'
+
+type Status = 'idle' | 'sending' | 'success' | 'error'
+
+const REQUEST_TIMEOUT = 15000
 
 const name = ref('')
 const email = ref('')
 const subject = ref('')
 const message = ref('')
-const statusMessage = ref('Your Message has been sent successfully, I will contact you very soon !')
-const sendMessageStatus = ref('Thank you !')
-const isLoading = ref(false)
-const isShowingStatus = ref(false)
+const honey = ref('')
+const status = ref<Status>('idle')
+const overlayOpen = ref(false)
+const overlayEl = ref<HTMLElement | null>(null)
+const okButton = ref<HTMLButtonElement | null>(null)
 
-function send(e: Event) {
-    e.preventDefault()
-    isLoading.value = true
-    toggleStatusPage()
-    axios.defaults.headers.post['Content-Type'] = 'application/json'
-    axios
-        .post('https://formsubmit.co/ajax/fakhriaditiarahman12@gmail.com', {
-            name: name.value,
-            email: email.value,
-            message: message.value,
+const overlayTitle = computed(() => (status.value === 'error' ? 'Sorry!' : 'Thank you!'))
+
+const overlayMessage = computed(() =>
+    status.value === 'error'
+        ? 'Your message could not be sent. Please try again in a moment, or email me directly.'
+        : 'Your message has been sent successfully, I will contact you very soon!'
+)
+
+watch(overlayOpen, async (isOpen) => {
+    if (!isOpen) return
+    await nextTick()
+    overlayEl.value?.focus()
+})
+
+watch(status, async (value) => {
+    if (value !== 'success' && value !== 'error') return
+    await nextTick()
+    okButton.value?.focus()
+})
+
+async function send() {
+    if (status.value === 'sending') return
+
+    status.value = 'sending'
+    overlayOpen.value = true
+
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT)
+
+    try {
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            signal: controller.signal,
+            body: JSON.stringify({
+                name: name.value,
+                email: email.value,
+                subject: subject.value,
+                message: message.value,
+                'bot-field': honey.value,
+            }),
         })
-        .then(() => {
-            email.value = ''
-            name.value = ''
-            message.value = ''
-            isLoading.value = false
-            isShowingStatus.value = true
-            statusMessage.value = 'Your Message has been sent successfully, I will contact you very soon !'
-            sendMessageStatus.value = 'Thank you !'
-        })
-        .catch(() => {
-            isShowingStatus.value = true
-            isLoading.value = false
-            statusMessage.value = 'Some error has occured, Please try again next time !'
-            sendMessageStatus.value = 'Sorry !'
-        })
+
+        const data = (await response.json().catch(() => ({}))) as { ok?: boolean }
+
+        if (!response.ok || !data.ok) {
+            throw new Error(`Request failed with status ${response.status}`)
+        }
+
+        name.value = ''
+        email.value = ''
+        subject.value = ''
+        message.value = ''
+        honey.value = ''
+        status.value = 'success'
+    } catch {
+        status.value = 'error'
+    } finally {
+        clearTimeout(timer)
+    }
 }
 
-function toggleStatusPage() {
-    isShowingStatus.value = !isShowingStatus.value
+function closeOverlay() {
+    if (status.value === 'sending') return
+    overlayOpen.value = false
+    status.value = 'idle'
 }
 </script>
 
